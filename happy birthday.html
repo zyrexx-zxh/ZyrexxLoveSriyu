@@ -7,11 +7,12 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('https://media.tenor.com/2roX3uxz_68AAAAC/heart-love.gif') no-repeat center center fixed;
+      background: url('https://i.ibb.co/9TZsgh1/romantic-bg.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Comic Sans MS', cursive, sans-serif;
       color: #000000;
       text-align: center;
+      overflow: hidden;
     }
 
     #main {
@@ -22,6 +23,25 @@
       font-size: 3em;
       text-shadow: 2px 2px 4px #fff;
       color: #000000;
+    }
+
+    #typedText {
+      display: inline-block;
+      border-right: 2px solid black;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(30) 1, blink 0.75s step-end infinite;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
 
     button {
@@ -60,8 +80,47 @@
       color: #000000;
     }
 
-    audio {
-      display: none;
+    /* Floating hearts animation */
+    .heart {
+      width: 20px;
+      height: 20px;
+      background: red;
+      position: absolute;
+      animation: float 5s linear infinite;
+      transform: rotate(45deg);
+      top: 100vh;
+      border-radius: 50% 50% 0 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -10px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
     }
   </style>
 </head>
@@ -70,8 +129,12 @@
     <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
   </audio>
 
+  <!-- Floating hearts container -->
+  <div id="hearts"></div>
+
   <div id="main">
-    <h1>Do you love me? 💖</h1>
+    <div id="typedText">Do you love me? 💖</div>
+    <br/>
     <button id="yesBtn" onclick="handleYes()">Yes</button>
     <button id="noBtn" onclick="handleNo()">No</button>
     <p id="thinkAgain"></p>
@@ -120,6 +183,17 @@
         `;
       }
     }
+
+    // Floating hearts creation
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.getElementById("hearts").appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
   </script>
 </body>
 </html>
