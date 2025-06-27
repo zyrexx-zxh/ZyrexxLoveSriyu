@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Sriyu 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://i.pinimg.com/originals/f3/24/83/f3248302e55b77714f688f07b63a4115.gif') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: white;
+      text-align: center;
+    }
+
+    #main {
+      margin-top: 100px;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      margin: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    #yesBtn {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #noBtn {
+      background-color: #f44336;
+      color: white;
+      position: relative;
+    }
+
+    #message {
+      font-size: 1.2em;
+      margin-top: 30px;
+      padding: 20px;
+      display: none;
+      background-color: rgba(0,0,0,0.6);
+      border-radius: 10px;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+  </audio>
+
+  <div id="main">
+    <h1>Do you love me? 💖</h1>
+    <button id="yesBtn" onclick="handleYes()">Yes</button>
+    <button id="noBtn" onclick="handleNo()">No</button>
+    <p id="thinkAgain"></p>
+    <div id="message"></div>
+  </div>
+
+  <script>
+    let noClickCount = 0;
+    const noBtn = document.getElementById("noBtn");
+    const thinkAgain = document.getElementById("thinkAgain");
+    const message = document.getElementById("message");
+
+    function handleNo() {
+      noClickCount++;
+      if (noClickCount < 4) {
+        thinkAgain.innerText = "Think again 😢";
+      } else {
+        // Move the button randomly
+        const x = Math.floor(Math.random() * window.innerWidth / 1.5);
+        const y = Math.floor(Math.random() * window.innerHeight / 1.5);
+        noBtn.style.position = "absolute";
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+        thinkAgain.innerText = "You can't escape now 😏";
+      }
+    }
+
+    function handleYes() {
+      const q1 = confirm("Wait a second... Aaj 28th June hai kya??");
+      if (!q1) {
+        alert("Check again 🫣");
+        setTimeout(handleYes, 500);
+      } else {
+        message.style.display = "block";
+        message.innerHTML = `
+          <h2>Happy Birthday Sriyu ❤️🎂</h2>
+          <p>
+            Aaj ka din tumhare liye khaas hai,<br>
+            Har pal mein teri muskurahat ka raaz hai.<br><br>
+            Chandni se bhi pyaari teri baatein hain,<br>
+            Aur har ek lamha, sirf tere saath ki chaahatein hain.<br><br>
+            Tum meri duniya ho, meri har dua mein ho,<br>
+            Is zindagi ke har safar mein, tum mere saath ho 💑<br><br>
+            🌸 Happy Birthday, Meri Pyari Sriyu 🌸<br>
+            💌 Tumhara Zyrexx 💌
+          </p>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
